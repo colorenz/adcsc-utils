@@ -52,64 +52,62 @@
 # SETTINGS: 
 # ==========================================================================
 
-# # What's the hostname of your issuing or stand-alone CA server? 
-# # (Just the FQDN host name, no https/ports or anything like that...)
-# ADCS_CA_hostname="adcs.my.org"
-# 
-# # What's the instance name of the CA? You can run certsrv if you're not sure what it is. 
-# # The instance name will be listed right under "Certificate Authority (Local)"
-# ADCS_CA_InstanceName="My Issuing CA"
-# 
-# # What template do you want to use? 
-# # If using an enterprise CA, fill this in. 
-# # If using a standalone CA, leave it blank.
-# # The AD CS template can determine things like the how long until the 
-# #  cert expires, certificate purpose (OIDs), etc. 
-# ADCS_CA_template="User"   # On an enterprise CA
-# # ADCS_CA_template=""       # On a standalone CA
-# 
-# # The passphrase for the private key file ("client-cert.pfx") that we will use to identify 
-# # ourselves to the AD CS Connector. You get this from the connector's PowerShell installer 
-# # script's output)
-# clientPfxPassword='crypticpassword'
-# 
-# # The "fqdn:port" of the AD CS Connector host running IIS 
-# # (Don't include https:// or a trailing "/"). 
-# # You only need to includ a :port at the end if you're not using 443
-# # E.g. : "adcs_connector.my.org" or "adcs_connector.my.org:8443" 
-# 
-# CONNECTOR_HOSTPORT="adcs_connector_host.my.org"
-# 
-# # INFORMATION FOR THE CSR... 
-# # What do you want as the subject for our cert? It can be anything you want... 
-# subject="username@my.org"
-# # When we have a new keypair created and signed by the CA, we'll export it to a p12 
-# # locked with a password. You wouldn't put a password in a script or pass it on the
-# # command line in real life, of course. Put the password you want to use here...
-# passwordForTheNewIdentityFile='pwd'
-# 
-# 
-# # Do you want to see the full contents of all the openssl commands? 
-# debug=false
-# 
-# 
-# #  END OF SETTINGS...
-# 
-# 
+# What's the hostname of your issuing or stand-alone CA server? 
+# (Just the FQDN host name, no https/ports or anything like that...)
+ADCS_CA_hostname="adcs.my.org"
 
+# What's the instance name of the CA? You can run certsrv if you're not sure what it is. 
+# The instance name will be listed right under "Certificate Authority (Local)"
+ADCS_CA_InstanceName="My Issuing CA"
 
+# What template do you want to use? 
+# If using an enterprise CA, fill this in. 
+# If using a standalone CA, leave it blank.
+# The AD CS template can determine things like the how long until the 
+#  cert expires, certificate purpose (OIDs), etc. 
+ADCS_CA_template="JamfADCSConnector"   # On an enterprise CA
+# ADCS_CA_template=""       # On a standalone CA, there is no template
 
-CONNECTOR_HOSTPORT="adcsc.jamf.club:8444"
+# Folder where you put the server nd client certs from the ADCS Connector install. 
+# ...relative to this script. 
 authenticationCertSubFolder='auth_certs/adcsc'
 serverCertFileName='server-cert.cer'
 clientCertFileName='client-cert.pfx'
-clientPfxPassword='KPzE40s2OH'
-ADCS_CA_hostname="ms"
-ADCS_CA_InstanceName="ca"
-ADCS_CA_template="JamfADCSConnector"
+
+# The passphrase for the private key file ("client-cert.pfx") that we will use to identify 
+# ourselves to the AD CS Connector. You get this from the connector's PowerShell installer 
+# script's output)
+clientPfxPassword='crypticpassword'
+
+# The "fqdn:port" of the AD CS Connector host running IIS 
+# (Don't include https:// or a trailing "/"). 
+# You only need to includ a :port at the end if you're not using 443
+# E.g. : "adcs_connector.my.org" or "adcs_connector.my.org:8443" 
+
+CONNECTOR_HOSTPORT="adcs_connector_host.my.org:port"
+
+
+# INFORMATION FOR THE CSR... 
+# What do you want as the subject for our cert? It can be anything you want... 
+# subject="username@my.org"
 subject="CN=mycomputername"
+
+# When we have a new keypair created and signed by the CA, we'll export it to a p12 
+# locked with a password. You wouldn't put a password in a script or pass it on the
+# command line in real life, of course. Put the password you want to use here...
 passwordForTheNewIdentityFile='pwd'
+
+
+# Do you want to see the full contents of all the openssl commands? 
 debug=false
+
+
+#  END OF SETTINGS...
+
+
+
+
+
 
 
 
